@@ -49,6 +49,7 @@ namespace Demo.Controllers
             {
                 return NotFound();
             }
+         
             return View(categoryFromDb);
         }
         [HttpPost]
@@ -59,6 +60,7 @@ namespace Demo.Controllers
             {
                 _db.Categories.Update(obj);
                 _db.SaveChanges();
+                TempData["success"] = "編輯成功!";
                 return RedirectToAction("Index");
             }
             return View();
@@ -86,6 +88,7 @@ namespace Demo.Controllers
             }
             _db.Categories.Remove(obj); 
             _db.SaveChanges();
+            TempData["success"] = "刪除成功!";
             return RedirectToAction("Index");
         }
     }
